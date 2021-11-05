@@ -19,7 +19,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         setupTextFields()
-
+        
     }
     
     func setupTextFields(){
@@ -35,14 +35,51 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         
         let name = nameTextField.text
         let email = emailTextField.text
-        let password = passwordTextField
+        let password = passwordTextField.text
+        let passwordConf = passwordConfTextField.text
+        
+        guard let userName = name, userName != "" else {
+            presentMessage(message: "Campo nome deve ser preenchido")
+            return
+        }
+        
+        guard let userEmail = email, userEmail != "" else{
+            presentMessage(message: "Campo email deve ser preenchido")
+            return
+        }
+        
+        guard let userPassword = password, userPassword != "" else{
+            presentMessage(message: "Campo senha deve ser preenchido")
+            return
+        }
+        
+        guard let userPasswordConf = passwordConf, userPasswordConf != "" else{
+            presentMessage(message: "Campo de confirmação de senha deve ser preenchido")
+            return
+        }
+        
+        guard userPasswordConf == userPassword else{
+            presentMessage(message: "Campo de confirmação de senha e campo de senha devem ser iguais")
+            return
+        }
+        
+        let user = User(userName: userName, userEmail: userEmail, userPassword: userPassword, userPasswordConf: userPasswordConf)
+        presentMessage(message: "Usuário cadastrado")
     }
-
+    
+    //Pop-up Message
+    func presentMessage(message: String){
+        
+        let alert = UIAlertController(title: "App de login", message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
         return true
     }
-
-
 }
+

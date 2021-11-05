@@ -12,12 +12,14 @@ class User{
     let name: String
     let email: String
     let password: String
+    let passwordConf: String
     
-    init(userName: String, userEmail: String, userPassword: String) {
+    init(userName: String, userEmail: String, userPassword: String, userPasswordConf: String) {
         
         name = userName
         email = userEmail
         password = userPassword
+        passwordConf = userPasswordConf
     }
 
 
