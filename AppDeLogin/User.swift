@@ -5,7 +5,7 @@
 //  Created by Erick Martins on 03/11/21.
 //
 
-import Foundation
+import UIKit
 
 class User{
     
@@ -13,6 +13,7 @@ class User{
     let email: String
     let password: String
     let passwordConf: String
+    var image: UIImage?
     
     init(userName: String, userEmail: String, userPassword: String, userPasswordConf: String) {
         
@@ -21,8 +22,6 @@ class User{
         password = userPassword
         passwordConf = userPasswordConf
     }
-
-
 }
 
 
