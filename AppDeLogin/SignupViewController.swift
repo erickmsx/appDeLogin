@@ -7,6 +7,8 @@
 
 import UIKit
 
+var userList: [User] = []
+
 class SignupViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
@@ -62,9 +64,11 @@ class SignupViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             return
         }
         
+        //Constructor parameters
         let user = User(userName: userName, userEmail: userEmail, userPassword: userPassword, userPasswordConf: userPasswordConf)
         
         user.image = imageView.image
+        userList.append(user)
         
         presentMessage(message: "Usuário \(userName) cadastrado")
     }
@@ -124,6 +128,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         picker.dismiss(animated: true, completion: nil)
     }
     
+    //Pressing the return on key get back to the view
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
